@@ -2,6 +2,9 @@ pragma solidity ^0.8.18;
 
 /** @dev IERC42424 Interface for the inheritance of ownership for on-chain agents.
  * Note: This interface extends the IERC173 Ownership standard and IERC165 for interface detection.
+ * The `agentId` throughout refers to an agent registered in the ERC-8004 (Trustless Agents)
+ * Identity Registry; a compliant inheritance transfer MUST be reflected in the agent's
+ * registry entry so that reputation and validation records survive the succession.
  */
 interface IERC42424 is IERC173, IERC165 {
   
@@ -16,7 +19,7 @@ interface IERC42424 is IERC173, IERC165 {
   );
 
   /** @notice Designates an heir to an on-chain agent specified by `agentId`.
-   * This function allows the current owner to assign a successor, ensuring continuity of the agent's operation in the event of the owner's demise [[5]](https://poe.com/citation?message_id=119616427084&citation=5).
+   * This function allows the current owner to assign a successor, ensuring continuity of the agent's operation in the event of the owner's demise.
    * @param agentId The unique identifier of the on-chain agent.
    * @param heir The address of the heir who will inherit the ownership.
    */
@@ -26,7 +29,7 @@ interface IERC42424 is IERC173, IERC165 {
   ) external;
 
   /** @notice Allows an heir to claim ownership of an on-chain agent specified by `agentId`.
-   * This function facilitates the transfer of control to the heir, once the conditions for inheritance are met [[5]](https://poe.com/citation?message_id=119616427084&citation=5).
+   * This function facilitates the transfer of control to the heir, once the conditions for inheritance are met.
    * @param agentId The unique identifier of the on-chain agent.
    * @param heir The address of the heir claiming the inheritance.
    * @return success A boolean value indicating whether the inheritance claim was successful.

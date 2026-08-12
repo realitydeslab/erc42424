@@ -30,7 +30,6 @@
   </script>
   <link rel="stylesheet" href="/assets/css/style.css" /><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Ethereum Improvement Proposals" /><link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
   <link rel="stylesheet" href="/assets/css/override.css" />
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js" integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa" crossorigin="anonymous"></script>
   <script type="text/javascript">
@@ -163,9 +162,13 @@
           <th scope="row">Requires</th>
           <td>
 
-  <a href="eip-165">EIP-165</a>, 
+  <a href="https://eips.ethereum.org/EIPS/eip-165">EIP-165</a>,
 
-  <a href="eip-173">EIP-173</a>
+  <a href="https://eips.ethereum.org/EIPS/eip-173">EIP-173</a>,
+
+  <a href="https://eips.ethereum.org/EIPS/eip-7878">ERC-7878</a>,
+
+  <a href="https://eips.ethereum.org/EIPS/eip-8004">ERC-8004</a>
 
 </td>
         </tr>
@@ -232,7 +235,7 @@
 
 <p>The keywords “MUST”, “MUST NOT”, “REQUIRED”, “SHALL”, “SHALL NOT”, “SHOULD”, “SHOULD NOT”, “RECOMMENDED”, “NOT RECOMMENDED”, “MAY”, and “OPTIONAL” in this document are to be interpreted as described in RFC 2119 and RFC 8174.</p>
 
-<p><strong>Every compliant contract must implement <a href="https://eips.ethereum.org/EIPS/eip-173">ERC-173</a>, and <a href="https://eips.ethereum.org/EIPS/eip-165">ERC-165</a> interfaces.</strong></p>
+<p><strong>Every compliant contract must implement <a href="https://eips.ethereum.org/EIPS/eip-173">ERC-173</a>, and <a href="https://eips.ethereum.org/EIPS/eip-165">ERC-165</a> interfaces. The <code>agentId</code> used throughout refers to an agent registered in the <a href="https://eips.ethereum.org/EIPS/eip-8004">ERC-8004</a> (Trustless Agents) Identity Registry; a compliant inheritance transfer MUST be reflected in the agent's registry entry so that its reputation and validation records survive the succession.</strong></p>
 
 <p>The on-chain AI agents should include the following interfaces:</p>
 
@@ -302,6 +305,10 @@
 <p>By introducing a standardized inheritance protocol, we can ensure that on-chain AI agents remain under human or community governance, even in the absence of their original owner. This protocol is designed to protect the interests of both the original owner and the broader community, while also preserving the integrity and sustainability of the blockchain ecosystem.</p>
 
 <p>The protocol draws inspiration from the compliance and identity verification mechanisms of ERC-3643, which ensure that only eligible and verified parties can own and manage security tokens . Similarly, the inheritance protocol will enforce that on-chain AI agents are transferred to eligible and compliant new owners, maintaining a continuous line of responsible stewardship.</p>
+
+<p>The succession mechanism itself builds directly on <a href="https://eips.ethereum.org/EIPS/eip-7878">ERC-7878</a> (Bequeathable Contracts), which standardizes the inheritance of tokens through owner-designated wills, appointed executors, and a moratorium period before assets are bequeathed. ERC-42424 generalizes this model from passive assets to active agents: whereas ERC-7878 transfers <em>tokens</em> after an owner's death, ERC-42424 transfers <em>stewardship of an autonomous entity</em>&mdash;the heir designation and inheritance claim in this interface play the role of ERC-7878's will and bequest, extended with community-vote succession for agents whose owners are DAOs rather than individuals.</p>
+
+<p>Agent identity is anchored in <a href="https://eips.ethereum.org/EIPS/eip-8004">ERC-8004</a> (Trustless Agents): the <code class="language-plaintext highlighter-rouge">agentId</code> used throughout this interface refers to an agent registered in the ERC-8004 Identity Registry, and a compliant inheritance transfer must be reflected in the agent's registry entry so that its reputation and validation records survive the succession. ERC-8004 made on-chain agents <em>legible</em>; ERC-42424 makes them <em>heritable</em>.</p>
   
     <h2 id="backwards-compatibility">
       
